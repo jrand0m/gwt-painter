@@ -17,13 +17,6 @@ public class ContextAdapterTest {
     }
 
     @Test
-    public void testThatContextAdapterReturnsContext() throws Exception {
-        Context2d ctx = mock(Context2d.class);
-        ContextAdapter c = new ContextAdapter(ctx);
-        assertThat(c.getContext(), equalTo(ctx));
-    }
-
-    @Test
     public void testThatContextAdapterLastPositionIsSettable() throws Exception {
         ContextAdapter c = new ContextAdapter(null);
         double x = 5, y = 6;
@@ -31,4 +24,6 @@ public class ContextAdapterTest {
         assertThat(c.getLastX(), equalTo(5d));
         assertThat(c.getLastY(), equalTo(6d));
     }
+
+
 }

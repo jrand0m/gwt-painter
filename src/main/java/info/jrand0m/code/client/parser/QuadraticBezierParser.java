@@ -22,7 +22,7 @@ public class QuadraticBezierParser extends AbstractSVGCommandParser {
                     x+=context.getLastX();
                     y+=context.getLastY();
                 }
-                context.getContext().quadraticCurveTo(x1, y1, x, y);
+                context.quadraticCurveTo(x1, y1, x, y);
                 context.setLastPoint(x,y);
             }
         };

@@ -88,7 +88,6 @@ public class SVGCommandParserTest {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 ContextAdapter c = (ContextAdapter) invocation.getArguments()[0];
-                c.getContext();
                 return null;
             }
         }).when(f).apply(any(ContextAdapter.class), anyListOf(Double.class), eq(false));
@@ -120,7 +119,6 @@ public class SVGCommandParserTest {
         doAnswer(new Answer() {
             public Object answer(InvocationOnMock invocation) throws Throwable {
                 ContextAdapter c = (ContextAdapter) invocation.getArguments()[0];
-                c.getContext();
                 return null;
             }
         }).when(f).apply(any(ContextAdapter.class), anyListOf(Double.class), eq(false));

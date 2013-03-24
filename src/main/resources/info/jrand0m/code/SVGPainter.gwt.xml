@@ -19,7 +19,7 @@
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='info.jrand0m.code.client.SVGPainter' />
-
+  <servlet path='/IntersectService' class='info.jrand0m.code.server.services.IntersectServiceImpl'/>
   <!-- Specify the paths for translatable code                    -->
   <source path='client' />
   <source path='shared' />

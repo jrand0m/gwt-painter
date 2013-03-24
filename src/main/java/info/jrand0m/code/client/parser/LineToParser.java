@@ -21,7 +21,7 @@ public class LineToParser extends AbstractSVGCommandParser {
                     x+=context.getLastX();
                     y+=context.getLastY();
                 }
-                context.getContext().lineTo(x, y);
+                context.lineTo(x, y);
                 context.setLastPoint(x,y);
 
             }

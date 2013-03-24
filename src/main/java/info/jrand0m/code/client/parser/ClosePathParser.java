@@ -12,7 +12,7 @@ public class ClosePathParser extends AbstractSVGCommandParser {
         return new Delegate() {
             public void apply(ContextAdapter context, List<Double> args, boolean isRelative) {
                 assert args.size() == 0;
-                context.getContext().closePath();
+                context.closePath();
             }
         };
     }

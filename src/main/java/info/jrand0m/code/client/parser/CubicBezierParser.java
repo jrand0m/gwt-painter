@@ -25,7 +25,7 @@ public class CubicBezierParser extends AbstractSVGCommandParser {
                     x+=context.getLastX();
                     y+=context.getLastY();
                 }
-                context.getContext().bezierCurveTo(x1, y1, x2, y2, x, y);
+                context.bezierCurveTo(x1, y1, x2, y2, x, y);
                 context.setLastPoint(x,y);
             }
         };

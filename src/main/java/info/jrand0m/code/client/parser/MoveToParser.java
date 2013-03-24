@@ -19,7 +19,7 @@ public class MoveToParser extends AbstractSVGCommandParser {
                     x+=context.getLastX();
                     y+=context.getLastY();
                 }
-                context.getContext().moveTo(x, y);
+                context.moveTo(x, y);
                 context.setLastPoint(x,y);
             }
         };

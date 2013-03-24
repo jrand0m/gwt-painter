@@ -1,6 +1,7 @@
 package info.jrand0m.code.client.views;
 
 import com.google.gwt.canvas.client.Canvas;
+import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
@@ -58,14 +59,15 @@ public class CanvasView implements IsWidget {
     class RenderResultHandler implements RenderResultEventHandler {
         public void onRenderResult(RenderResultEvent event) {
 
-            ContextAdapter adapter = new ContextAdapter(canvas.getContext2d());
-            adapter.getContext().setStrokeStyle("#FA0000");
-            adapter.getContext().setLineWidth(2);
-            adapter.getContext().beginPath();
+            Context2d context2d = canvas.getContext2d();
+            ContextAdapter adapter = new ContextAdapter(context2d);
+            context2d.setStrokeStyle("#FA0000");
+            context2d.setLineWidth(2);
+            context2d.beginPath();
             for (Command command : event.getCommandList()) {
                 command.execute(adapter);
             }
-            adapter.getContext().stroke();
+            context2d.stroke();
         }
     }
 }

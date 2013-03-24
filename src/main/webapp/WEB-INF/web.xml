@@ -13,9 +13,17 @@
         <servlet-name>jUnitHostImpl</servlet-name>
         <servlet-class>com.google.gwt.junit.server.JUnitHostImpl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>info.jrand0m.code.SVGPainter IntersectService</servlet-name>
+        <servlet-class>info.jrand0m.code.server.services.IntersectServiceImpl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>jUnitHostImpl</servlet-name>
         <url-pattern>/SVGPainter/junithost/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>info.jrand0m.code.SVGPainter IntersectService</servlet-name>
+        <url-pattern>/SVGPainter/IntersectService</url-pattern>
     </servlet-mapping>
 
 </web-app>

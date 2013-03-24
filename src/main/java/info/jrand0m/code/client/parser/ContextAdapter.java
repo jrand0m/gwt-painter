@@ -1,6 +1,5 @@
 package info.jrand0m.code.client.parser;
 
-import com.google.gwt.canvas.dom.client.Context;
 import com.google.gwt.canvas.dom.client.Context2d;
 
 
@@ -13,8 +12,24 @@ public class ContextAdapter {
         this.context = context;
     }
 
-    public Context2d getContext() {
-        return context;
+    public void moveTo(double x, double y) {
+        context.moveTo(x, y);
+    }
+
+    public void lineTo(double x, double y) {
+        context.lineTo(x, y);
+    }
+
+    public void bezierCurveTo(double cpx1, double cpy1, double cpx2, double cpy2, double x, double y) {
+        context.bezierCurveTo(cpx1, cpy1, cpx2, cpy2, x, y);
+    }
+
+    public void quadraticCurveTo(double cpx1, double cpy1, double x, double y) {
+        context.quadraticCurveTo(cpx1, cpy1, x, y);
+    }
+
+    public void closePath() {
+        context.closePath();
     }
 
     public double getLastX() {
