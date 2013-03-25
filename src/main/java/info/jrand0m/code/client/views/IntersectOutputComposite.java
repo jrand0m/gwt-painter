@@ -13,12 +13,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import info.jrand0m.code.client.events.InputReadyEvent;
 import info.jrand0m.code.client.events.InputReadyEventHandler;
 import info.jrand0m.code.client.events.ParseSVGPathEvent;
-import info.jrand0m.code.shared.parser.SVGPathParser;
 import info.jrand0m.code.client.services.IntersectService;
 import info.jrand0m.code.client.services.IntersectServiceAsync;
+import info.jrand0m.code.shared.parser.SVGPathParser;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 public class IntersectOutputComposite extends Composite {
     private final EventBus bus;
@@ -40,8 +39,8 @@ public class IntersectOutputComposite extends Composite {
     private void signUpForEvents() {
         bus.addHandler(InputReadyEvent.TYPE, new InputReadyEventHandler() {
             public void onInputReady(InputReadyEvent event) {
-                String commandString  = event.getCommandString();
-                if (!commandString.isEmpty()){
+                String commandString = event.getCommandString();
+                if (!commandString.isEmpty()) {
                     results.put(event.getInputId(), commandString);
                 }
             }
@@ -66,10 +65,10 @@ public class IntersectOutputComposite extends Composite {
 
                 public void onClick(ClickEvent event) {
 
-                    if (results.size()==2){
+                    if (results.size() == 2) {
                         Object[] keys = results.keySet().toArray();
-                        assert keys.length ==2;
-                        service.getIntersection(results.get(keys[0]),results.get(keys[1]),
+                        assert keys.length == 2;
+                        service.getIntersection(results.get(keys[0]), results.get(keys[1]),
                                 new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
                                         caught.printStackTrace();

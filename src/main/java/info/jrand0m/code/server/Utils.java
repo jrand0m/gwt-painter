@@ -19,7 +19,7 @@ public class Utils {
         return new Area(path);
     }
 
-    public static String commandsListFromArea(Area area) {
+    public static String commandStringFromArea(Area area) {
         StringBuilder result = new StringBuilder();
 
         PathIterator i = area.getPathIterator(null);

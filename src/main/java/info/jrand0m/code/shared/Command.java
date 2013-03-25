@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Represents Abstract SVG Command
  */
-public interface Command extends Serializable,IsSerializable {
+public interface Command extends Serializable, IsSerializable {
     /**
      * Execute command in given context
      */

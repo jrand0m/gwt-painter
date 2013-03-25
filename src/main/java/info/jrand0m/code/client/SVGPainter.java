@@ -5,8 +5,9 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import info.jrand0m.code.client.views.IntersectOutputComposite;
+import info.jrand0m.code.client.views.UserInputComposite;
 import info.jrand0m.code.shared.parser.SVGPathParser;
-import info.jrand0m.code.client.views.*;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -21,16 +22,16 @@ public class SVGPainter implements EntryPoint {
         //TODO: use GIN?
         SimpleEventBus eventBus = new SimpleEventBus();
 
-        HorizontalPanel panel = new HorizontalPanel();
-        UserInputComposite input1 = new UserInputComposite(eventBus,"1");
-        UserInputComposite input2 = new UserInputComposite(eventBus,"2");
-        panel.add(input1);
-        panel.add(input2);
-        VerticalPanel vp = new VerticalPanel();
-        vp.add(panel);
+        HorizontalPanel hPanel = new HorizontalPanel();
+        UserInputComposite input1 = new UserInputComposite(eventBus, "1");
+        UserInputComposite input2 = new UserInputComposite(eventBus, "2");
+        hPanel.add(input1);
+        hPanel.add(input2);
+        VerticalPanel vPanel = new VerticalPanel();
         IntersectOutputComposite output = new IntersectOutputComposite(eventBus);
-        vp.add(output);
-        RootPanel.get().add(vp);
+        vPanel.add(hPanel);
+        vPanel.add(output);
+        RootPanel.get().add(vPanel);
 
     }
 }

@@ -4,7 +4,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 import java.io.Serializable;
 
-public interface ContextAdapter extends IsSerializable,Serializable {
+public interface ContextAdapter extends IsSerializable, Serializable {
     void moveTo(double x, double y);
 
     void lineTo(double x, double y);

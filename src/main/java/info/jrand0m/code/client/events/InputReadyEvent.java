@@ -1,9 +1,6 @@
 package info.jrand0m.code.client.events;
 
 import com.google.gwt.event.shared.GwtEvent;
-import info.jrand0m.code.shared.Command;
-
-import java.util.List;
 
 
 public class InputReadyEvent extends GwtEvent<InputReadyEventHandler> {

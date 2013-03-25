@@ -3,16 +3,10 @@ package info.jrand0m.code.server;
 
 import info.jrand0m.code.client.services.IntersectService;
 import info.jrand0m.code.server.services.IntersectServiceImpl;
-import info.jrand0m.code.shared.Command;
-import info.jrand0m.code.shared.ContextAdapter;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
 
 public class IntersectServiceTest {
     @Test

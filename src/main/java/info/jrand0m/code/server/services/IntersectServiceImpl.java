@@ -14,7 +14,7 @@ public class IntersectServiceImpl extends RemoteServiceServlet implements Inters
 
         area1.intersect(area2);
 
-        String result = Utils.commandsListFromArea(area1);
+        String result = Utils.commandStringFromArea(area1);
         return result;
     }
 

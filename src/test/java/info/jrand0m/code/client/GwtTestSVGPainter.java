@@ -1,7 +1,6 @@
 package info.jrand0m.code.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
-import org.junit.Ignore;
 
 /**
  * GWT JUnit <b>integration</b> tests must extend GWTTestCase.

@@ -1,7 +1,6 @@
 package info.jrand0m.code.server;
 
 
-import info.jrand0m.code.shared.ContextAdapter;
 import org.junit.Test;
 
 import java.awt.geom.Area;
@@ -12,7 +11,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
 
 public class UtilsTest {
     @Test
@@ -53,7 +51,7 @@ public class UtilsTest {
 
         Area a = new Area(gp);
 
-        String result = Utils.commandsListFromArea(a);
+        String result = Utils.commandStringFromArea(a);
         assertThat(result.length(), not(equalTo(0)));
         assertThat(result, equalTo("M80.0,20.0 Q90.0,40.0 80.0,60.0 Q50.0,120.0 80.0,180.0 L120.0,180.0 Q150.0,120.0 120.0,60.0 Q110.0,40.0 120.0,20.0 Z"));
         ///////////////////////////////////////////
@@ -65,7 +63,7 @@ public class UtilsTest {
 
         a = new Area(gp);
 
-        result = Utils.commandsListFromArea(a);
+        result = Utils.commandStringFromArea(a);
         assertThat(result.length(), not(equalTo(0)));
 
 

@@ -9,9 +9,6 @@ import info.jrand0m.code.client.events.InputReadyEvent;
 import info.jrand0m.code.client.events.RenderResultEvent;
 import info.jrand0m.code.client.events.RenderResultEventHandler;
 import info.jrand0m.code.shared.parser.SVGPathParser;
-import info.jrand0m.code.shared.Command;
-
-import java.util.List;
 
 public class UserInputComposite extends Composite {
     private EventBus bus;
@@ -19,7 +16,7 @@ public class UserInputComposite extends Composite {
     private final SVGPathParser parser;
     private final String id;
 
-    public UserInputComposite(EventBus bus, String id){
+    public UserInputComposite(EventBus bus, String id) {
         this.id = id;
         this.bus = bus;
         this.internalEventBus = new SimpleEventBus();
@@ -31,8 +28,8 @@ public class UserInputComposite extends Composite {
     private void signUpForEvents() {
         internalEventBus.addHandler(RenderResultEvent.TYPE, new RenderResultEventHandler() {
             public void onRenderResult(RenderResultEvent event) {
-                if (!event.getCommandList().isEmpty()){
-                   bus.fireEvent(new InputReadyEvent(id,event.getRawString()));
+                if (!event.getCommandList().isEmpty()) {
+                    bus.fireEvent(new InputReadyEvent(id, event.getRawString()));
                 }
             }
         });
@@ -42,7 +39,7 @@ public class UserInputComposite extends Composite {
     protected void createWidgets() {
         VerticalPanel widget = new VerticalPanel();
         initWidget(widget);
-        widget.add(new Label("Input #"+id));
+        widget.add(new Label("Input #" + id));
         widget.add(new TextInputView(internalEventBus));
         widget.add(new ErrorLabelView(internalEventBus));
         widget.add(new CanvasView(internalEventBus));
