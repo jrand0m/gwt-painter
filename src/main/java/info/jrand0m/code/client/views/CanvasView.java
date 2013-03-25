@@ -66,12 +66,14 @@ public class CanvasView implements IsWidget {
             Context2d context2d = canvas.getContext2d();
             ContextAdapter adapter = new GWTContext2DAdapter(context2d);
             context2d.setStrokeStyle("#FA0000");
+            context2d.setFillStyle("#00FA00");
             context2d.setLineWidth(2);
             context2d.beginPath();
             for (Command command : event.getCommandList()) {
                 command.execute(adapter);
             }
             context2d.stroke();
+            context2d.fill();
         }
     }
 }

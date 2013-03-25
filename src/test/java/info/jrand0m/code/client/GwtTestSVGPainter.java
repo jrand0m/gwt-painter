@@ -13,7 +13,7 @@ import org.junit.Ignore;
  * See http://mojo.codehaus.org/gwt-maven-plugin/user-guide/testing.html
  * for details.
  */
-@Ignore
+
 public class GwtTestSVGPainter extends GWTTestCase {
 
     /**

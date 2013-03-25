@@ -61,6 +61,7 @@ public class IntersectOutputComposite extends Composite {
     class IntersectButton extends Button {
 
         public IntersectButton() {
+            setText("Intersect");
             addClickHandler(new ClickHandler() {
 
                 public void onClick(ClickEvent event) {
