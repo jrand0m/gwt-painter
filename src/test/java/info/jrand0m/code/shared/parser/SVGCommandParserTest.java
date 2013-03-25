@@ -1,4 +1,4 @@
-package info.jrand0m.code.client.parser;
+package info.jrand0m.code.shared.parser;
 
 import info.jrand0m.code.shared.Command;
 import info.jrand0m.code.shared.ContextAdapter;

@@ -1,0 +1,82 @@
+package info.jrand0m.code.server;
+
+
+import info.jrand0m.code.shared.ContextAdapter;
+import org.junit.Test;
+
+import java.awt.geom.Area;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.PathIterator;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
+
+public class UtilsTest {
+    @Test
+    public void testCanConvertMoveToFromCommandToArea() throws Exception {
+        String triangle = "M10,10 L20,20 10,20 Z";
+
+        Area a = Utils.areaFromCommandString(triangle);
+
+        assertThat(a, notNullValue());
+        PathIterator it = a.getPathIterator(null);
+        double[] args = new double[2];
+        assertThat(it.currentSegment(args), equalTo(PathIterator.SEG_MOVETO));
+        assertThat(args, equalTo(new double[]{10.0, 10.0}));
+        it.next();
+        assertThat(it.currentSegment(args), equalTo(PathIterator.SEG_LINETO));
+        assertThat(args, equalTo(new double[]{10.0, 20.0}));
+        it.next();
+        assertThat(it.currentSegment(args), equalTo(PathIterator.SEG_LINETO));
+        assertThat(args, equalTo(new double[]{20.0, 20.0}));
+        it.next();
+        assertThat(it.currentSegment(args), equalTo(PathIterator.SEG_LINETO));
+        assertThat(args, equalTo(new double[]{10.0, 10.0}));
+        it.next();
+        assertThat(it.currentSegment(args), equalTo(PathIterator.SEG_CLOSE));
+        assertThat(args, equalTo(new double[]{10.0, 10.0}));
+    }
+
+    @Test
+    public void testCanConvertFromAreaToCommand() throws Exception {
+        GeneralPath gp = new GeneralPath();
+        gp.moveTo(80, 20);
+        gp.quadTo(90.0, 40.0, 80.0, 60.0);
+        gp.quadTo(50.0, 120.0, 80.0, 180.0);
+        gp.lineTo(120.0, 180.0);
+        gp.quadTo(150.0, 120.0, 120.0, 60.0);
+        gp.quadTo(110.0, 40.0, 120.0, 20.0);
+        gp.closePath();
+
+        Area a = new Area(gp);
+
+        String result = Utils.commandsListFromArea(a);
+        assertThat(result.length(), not(equalTo(0)));
+        assertThat(result, equalTo("M80.0,20.0 Q90.0,40.0 80.0,60.0 Q50.0,120.0 80.0,180.0 L120.0,180.0 Q150.0,120.0 120.0,60.0 Q110.0,40.0 120.0,20.0 Z"));
+        ///////////////////////////////////////////
+
+        gp = new GeneralPath();
+        gp.moveTo(10, 105);
+        gp.curveTo(50, 50, 130, 50, 80, 105);
+        gp.closePath();
+
+        a = new Area(gp);
+
+        result = Utils.commandsListFromArea(a);
+        assertThat(result.length(), not(equalTo(0)));
+
+
+//        // java.awt.geom.Area does some optimizations...
+//        verify(ctx, times(1)).moveTo(78.75, 63.75);
+//        verify(ctx, times(1)).bezierCurveTo(60, 63.75, 30, 77.5, 10, 105);
+//        verify(ctx, times(1)).lineTo(80, 105);
+//        verify(ctx, times(1)).bezierCurveTo(105, 77.5, 97.5, 63.75, 78.75, 63.75);
+//        verify(ctx, times(1)).closePath();
+//        verifyNoMoreInteractions(ctx);
+
+
+    }
+}

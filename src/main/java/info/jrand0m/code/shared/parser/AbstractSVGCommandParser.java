@@ -1,4 +1,4 @@
-package info.jrand0m.code.client.parser;
+package info.jrand0m.code.shared.parser;
 
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;

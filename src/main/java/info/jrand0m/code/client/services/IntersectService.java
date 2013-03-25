@@ -9,6 +9,6 @@ import java.util.List;
 @RemoteServiceRelativePath("IntersectService")
 public interface IntersectService extends RemoteService {
     // Sample interface method of remote interface
-    List<Command> getIntersection(List<Command> figure1, List<Command> figure2);
+    String getIntersection(String figure1, String figure2);
 }
 

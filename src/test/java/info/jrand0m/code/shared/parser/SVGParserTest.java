@@ -1,4 +1,4 @@
-package info.jrand0m.code.client.parser;
+package info.jrand0m.code.shared.parser;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -25,7 +25,7 @@ public class SVGParserTest {
         EventBus bus = spy(new SimpleEventBus());
         new SVGPathParser(bus);
         bus.fireEvent(new ParseSVGPathEvent("M0,0 L1,1, Z"));
-        verify(bus, atLeastOnce()).fireEvent(new RenderResultEvent(anyList()));
+        verify(bus, atLeastOnce()).fireEvent(new RenderResultEvent(anyList(), "M0,0 L1,1, Z"));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class SVGParserTest {
         parser.interpret("M0,0 L1,1 1 z");
         verify(parser, times(1)).getCommandParserSet();
         verify(bus, times(1)).fireEvent(new MalformedSVGCommandEvent(anyString()));
-        verify(bus, times(1)).fireEvent(new RenderResultEvent(anyList()));
+        verify(bus, times(1)).fireEvent(new RenderResultEvent(anyList(), "M0,0 L1,1, Z"));
 
     }
 

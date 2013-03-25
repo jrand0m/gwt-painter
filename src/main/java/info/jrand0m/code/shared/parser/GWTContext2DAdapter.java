@@ -1,4 +1,4 @@
-package info.jrand0m.code.client.parser;
+package info.jrand0m.code.shared.parser;
 
 import com.google.gwt.canvas.dom.client.Context2d;
 import info.jrand0m.code.shared.ContextAdapter;

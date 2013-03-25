@@ -9,15 +9,15 @@ import java.util.List;
 public class InputReadyEvent extends GwtEvent<InputReadyEventHandler> {
     public static Type<InputReadyEventHandler> TYPE = new Type<InputReadyEventHandler>();
     private String inputId;
-    private List<Command> commandList;
+    private String commandString;
 
-    public InputReadyEvent(String inputId, List<Command> commandList) {
+    public InputReadyEvent(String inputId, String commandString) {
         this.inputId = inputId;
-        this.commandList = commandList;
+        this.commandString = commandString;
     }
 
-    public List<Command> getCommandList() {
-        return commandList;
+    public String getCommandString() {
+        return commandString;
     }
 
     public String getInputId() {

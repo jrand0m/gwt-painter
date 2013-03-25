@@ -10,7 +10,7 @@ import info.jrand0m.code.client.events.MalformedSVGCommandEvent;
 import info.jrand0m.code.client.events.MalformedSVGCommandEventHandler;
 import info.jrand0m.code.client.events.RenderResultEvent;
 import info.jrand0m.code.client.events.RenderResultEventHandler;
-import info.jrand0m.code.client.parser.GWTContext2DAdapter;
+import info.jrand0m.code.shared.parser.GWTContext2DAdapter;
 import info.jrand0m.code.shared.Command;
 import info.jrand0m.code.shared.ContextAdapter;
 

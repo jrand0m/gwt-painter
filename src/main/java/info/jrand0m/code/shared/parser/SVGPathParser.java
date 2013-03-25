@@ -1,6 +1,7 @@
-package info.jrand0m.code.client.parser;
+package info.jrand0m.code.shared.parser;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
 import info.jrand0m.code.client.events.MalformedSVGCommandEvent;
@@ -24,6 +25,10 @@ public class SVGPathParser {
     private final Set<CommandParser> commandParserSet = new HashSet<CommandParser>();
     private final EventBus eventBus;
 
+    public SVGPathParser() {
+        this(new SimpleEventBus(), defaultCommandParsers);
+
+    }
 
     public SVGPathParser(EventBus eventBus) {
         this(eventBus, defaultCommandParsers);
@@ -86,8 +91,9 @@ public class SVGPathParser {
     class ParseEventHandler implements ParseSVGPathEventHandler {
 
         public void onParseSVGPathEvent(ParseSVGPathEvent event) {
-            List<Command> commandList = interpret(event.getTextBoxInputValue());
-            eventBus.fireEvent(new RenderResultEvent(commandList));
+            String textBoxInputValue = event.getTextBoxInputValue();
+            List<Command> commandList = interpret(textBoxInputValue);
+            eventBus.fireEvent(new RenderResultEvent(commandList, textBoxInputValue));
         }
     }
 }

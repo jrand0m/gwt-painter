@@ -10,25 +10,21 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import info.jrand0m.code.client.events.ComputeIntersectEvent;
 import info.jrand0m.code.client.events.InputReadyEvent;
 import info.jrand0m.code.client.events.InputReadyEventHandler;
-import info.jrand0m.code.client.events.RenderResultEvent;
-import info.jrand0m.code.client.parser.SVGPathParser;
+import info.jrand0m.code.client.events.ParseSVGPathEvent;
+import info.jrand0m.code.shared.parser.SVGPathParser;
 import info.jrand0m.code.client.services.IntersectService;
 import info.jrand0m.code.client.services.IntersectServiceAsync;
-import info.jrand0m.code.shared.Command;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
 public class IntersectOutputComposite extends Composite {
     private final EventBus bus;
     private final SimpleEventBus internalEventBus;
     private final SVGPathParser parser;
-    private final HashMap<String, List<Command>> results = new HashMap<String, List<Command>>();
+    private final HashMap<String, String> results = new HashMap<String, String>();
     private final IntersectServiceAsync service = (IntersectServiceAsync) GWT.create(IntersectService.class);
 
 
@@ -44,9 +40,9 @@ public class IntersectOutputComposite extends Composite {
     private void signUpForEvents() {
         bus.addHandler(InputReadyEvent.TYPE, new InputReadyEventHandler() {
             public void onInputReady(InputReadyEvent event) {
-                List<Command> list = event.getCommandList();
-                if (!list.isEmpty()){
-                    results.put(event.getInputId(), list);
+                String commandString  = event.getCommandString();
+                if (!commandString.isEmpty()){
+                    results.put(event.getInputId(), commandString);
                 }
             }
         });
@@ -61,26 +57,25 @@ public class IntersectOutputComposite extends Composite {
         widget.add(new CanvasView(internalEventBus));
 
     }
-    final static private Logger lg = Logger.getLogger("asd");
+
     class IntersectButton extends Button {
 
         public IntersectButton() {
             addClickHandler(new ClickHandler() {
 
                 public void onClick(ClickEvent event) {
-                    lg.info("Click " + results.size());
+
                     if (results.size()==2){
                         Object[] keys = results.keySet().toArray();
                         assert keys.length ==2;
                         service.getIntersection(results.get(keys[0]),results.get(keys[1]),
-                                new AsyncCallback<List<Command>>() {
+                                new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
-                                        lg.info("Fail: " + caught );
                                         caught.printStackTrace();
                                     }
 
-                                    public void onSuccess(List<Command> result) {
-                                        internalEventBus.fireEvent(new RenderResultEvent(result));
+                                    public void onSuccess(String result) {
+                                        internalEventBus.fireEvent(new ParseSVGPathEvent(result));
                                     }
                                 });
                         results.clear();

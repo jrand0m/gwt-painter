@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import info.jrand0m.code.client.events.InputReadyEvent;
 import info.jrand0m.code.client.events.RenderResultEvent;
 import info.jrand0m.code.client.events.RenderResultEventHandler;
-import info.jrand0m.code.client.parser.SVGPathParser;
+import info.jrand0m.code.shared.parser.SVGPathParser;
 import info.jrand0m.code.shared.Command;
 
 import java.util.List;
@@ -31,9 +31,8 @@ public class UserInputComposite extends Composite {
     private void signUpForEvents() {
         internalEventBus.addHandler(RenderResultEvent.TYPE, new RenderResultEventHandler() {
             public void onRenderResult(RenderResultEvent event) {
-                List<Command> list = event.getCommandList();
                 if (!event.getCommandList().isEmpty()){
-                   bus.fireEvent(new InputReadyEvent(id,list));
+                   bus.fireEvent(new InputReadyEvent(id,event.getRawString()));
                 }
             }
         });

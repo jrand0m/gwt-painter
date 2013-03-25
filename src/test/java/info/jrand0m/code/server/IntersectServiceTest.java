@@ -10,87 +10,19 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 public class IntersectServiceTest {
     @Test
     public void testIntegration() throws Exception {
-        List<Command> square1 = new ArrayList<Command>();
-        List<Command> square2 = new ArrayList<Command>();
-        square1.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.moveTo(5, 5);
-            }
-        });
-        square1.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(5, 15);
-            }
-        });
-        square1.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(15, 15);
-            }
-        });
-        square1.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(15, 5);
-            }
-        });
-        square1.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(5, 5);
-            }
-        });
-        square1.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.closePath();
-            }
-        });
+        String square1 = "M5,5 L5,15 L15,15 L15,5 L5,5 Z";
+        String square2 = "M10,5 L10,15 L20,15 L20,5 L10,5 Z";
 
-        square2.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.moveTo(10, 5);
-            }
-        });
-        square2.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(10, 15);
-            }
-        });
-        square2.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(20, 15);
-            }
-        });
-        square2.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(20, 5);
-            }
-        });
-        square2.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.lineTo(10, 5);
-            }
-        });
-        square2.add(new Command() {
-            public void execute(ContextAdapter context2d) {
-                context2d.closePath();
-            }
-        });
         IntersectService service = new IntersectServiceImpl();
-        List<Command> result = service.getIntersection(square1, square2);
-        ContextAdapter ctx = mock(ContextAdapter.class);
-        for (Command c : result) {
-            c.execute(ctx);
-        }
-
-        verify(ctx).moveTo(10, 5);
-        verify(ctx).lineTo(10, 15);
-        verify(ctx).lineTo(15, 15);
-        verify(ctx).lineTo(15, 5);
-        verify(ctx).closePath();
-        verifyNoMoreInteractions(ctx);
+        String result = service.getIntersection(square1, square2);
+        assertThat(result, equalTo("M10.0,5.0 L10.0,15.0 L15.0,15.0 L15.0,5.0 Z"));
     }
 
 

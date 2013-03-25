@@ -5,7 +5,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import info.jrand0m.code.client.parser.SVGPathParser;
+import info.jrand0m.code.shared.parser.SVGPathParser;
 import info.jrand0m.code.client.views.*;
 
 /**

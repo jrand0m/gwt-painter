@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IntersectServiceAsync {
     // Sample interface method of remote interface
-    void getIntersection(List<Command> figure1, List<Command> figure2, AsyncCallback<List<Command>> async);
+    void getIntersection(String figure1, String figure2, AsyncCallback<String> async);
 }
