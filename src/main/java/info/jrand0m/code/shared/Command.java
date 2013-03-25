@@ -1,7 +1,4 @@
-package info.jrand0m.code.client.parser;
-
-import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.user.rebind.rpc.SerializableTypeOracle;
+package info.jrand0m.code.shared;
 
 import java.io.Serializable;
 

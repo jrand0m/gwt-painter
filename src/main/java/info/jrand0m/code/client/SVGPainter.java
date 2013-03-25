@@ -21,9 +21,19 @@ public class SVGPainter implements EntryPoint {
         //TODO: use GIN?
         SimpleEventBus eventBus = new SimpleEventBus();
         parser = new SVGPathParser(eventBus);
+
         RootPanel.get().add(new TextInputView(eventBus));
         RootPanel.get().add(new ErrorLabelView(eventBus));
         RootPanel.get().add(new CanvasView(eventBus));
+
+       /* RootPanel.get().add(new TextInputView(eventBus));
+        RootPanel.get().add(new ErrorLabelView(eventBus));
+        RootPanel.get().add(new CanvasView(eventBus));
+
+        RootPanel.get().add(new IntersectButtonView(eventBus));
+        RootPanel.get().add(new ErrorLabelView(eventBus));
+        RootPanel.get().add(new CanvasView(eventBus));*/
+
 
     }
 }

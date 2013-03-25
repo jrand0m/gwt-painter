@@ -6,9 +6,13 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-import info.jrand0m.code.client.events.*;
-import info.jrand0m.code.client.parser.Command;
-import info.jrand0m.code.client.parser.ContextAdapter;
+import info.jrand0m.code.client.events.MalformedSVGCommandEvent;
+import info.jrand0m.code.client.events.MalformedSVGCommandEventHandler;
+import info.jrand0m.code.client.events.RenderResultEvent;
+import info.jrand0m.code.client.events.RenderResultEventHandler;
+import info.jrand0m.code.client.parser.GWTContext2DAdapter;
+import info.jrand0m.code.shared.Command;
+import info.jrand0m.code.shared.ContextAdapter;
 
 public class CanvasView implements IsWidget {
     private EventBus eventBus;
@@ -60,7 +64,7 @@ public class CanvasView implements IsWidget {
         public void onRenderResult(RenderResultEvent event) {
 
             Context2d context2d = canvas.getContext2d();
-            ContextAdapter adapter = new ContextAdapter(context2d);
+            ContextAdapter adapter = new GWTContext2DAdapter(context2d);
             context2d.setStrokeStyle("#FA0000");
             context2d.setLineWidth(2);
             context2d.beginPath();

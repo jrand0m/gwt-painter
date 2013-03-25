@@ -1,5 +1,7 @@
 package info.jrand0m.code.client.parser;
 
+import info.jrand0m.code.shared.ContextAdapter;
+
 import java.util.List;
 
 public class ClosePathParser extends AbstractSVGCommandParser {

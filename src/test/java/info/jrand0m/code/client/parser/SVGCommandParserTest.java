@@ -1,5 +1,7 @@
 package info.jrand0m.code.client.parser;
 
+import info.jrand0m.code.shared.Command;
+import info.jrand0m.code.shared.ContextAdapter;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -49,7 +51,7 @@ public class SVGCommandParserTest {
             }
         };
         Command c = parser.from("M100.1 200");
-        ContextAdapter mockAdapter = mock(ContextAdapter.class);
+        ContextAdapter mockAdapter = mock(GWTContext2DAdapter.class);
         c.execute(mockAdapter);
         ArrayList<Double> data = new ArrayList<Double>(2) {{
             add(100.1d);
@@ -68,7 +70,7 @@ public class SVGCommandParserTest {
             }
         };
         Command c = parser.from("M100.1 200 300 400");// multiple args are actually split into multiple commands
-        ContextAdapter mockAdapter = mock(ContextAdapter.class);
+        ContextAdapter mockAdapter = mock(GWTContext2DAdapter.class);
         c.execute(mockAdapter);
         ArrayList<Double> firstRun = new ArrayList<Double>(2) {{
             add(100.1d);
@@ -78,8 +80,8 @@ public class SVGCommandParserTest {
             add(300d);
             add(400d);
         }};
-        verify(f, times(1)).apply(any(ContextAdapter.class), eq(firstRun), eq(false));
-        verify(f, times(1)).apply(any(ContextAdapter.class), eq(secondRun), eq(false));
+        verify(f, times(1)).apply(any(GWTContext2DAdapter.class), eq(firstRun), eq(false));
+        verify(f, times(1)).apply(any(GWTContext2DAdapter.class), eq(secondRun), eq(false));
     }
 
     @Test
@@ -90,7 +92,7 @@ public class SVGCommandParserTest {
                 ContextAdapter c = (ContextAdapter) invocation.getArguments()[0];
                 return null;
             }
-        }).when(f).apply(any(ContextAdapter.class), anyListOf(Double.class), eq(false));
+        }).when(f).apply(any(GWTContext2DAdapter.class), anyListOf(Double.class), eq(false));
         AbstractSVGCommandParser parser = new AbstractSVGCommandParser("M", 2, true) {
             @Override
             public Delegate getDelegate() {
@@ -98,7 +100,7 @@ public class SVGCommandParserTest {
             }
         };
         Command c = parser.from("M100.1 200 300 400");
-        ContextAdapter mockAdapter = mock(ContextAdapter.class);
+        ContextAdapter mockAdapter = mock(GWTContext2DAdapter.class);
         c.execute(mockAdapter);
         ArrayList<Double> firstRun = new ArrayList<Double>(2) {{
             add(100.1d);
@@ -108,8 +110,8 @@ public class SVGCommandParserTest {
             add(300d);
             add(400d);
         }};
-        verify(f, times(1)).apply(any(ContextAdapter.class), eq(firstRun), eq(false));
-        verify(f, times(1)).apply(any(ContextAdapter.class), eq(secondRun), eq(false));
+        verify(f, times(1)).apply(any(GWTContext2DAdapter.class), eq(firstRun), eq(false));
+        verify(f, times(1)).apply(any(GWTContext2DAdapter.class), eq(secondRun), eq(false));
 
     }
 
@@ -121,7 +123,7 @@ public class SVGCommandParserTest {
                 ContextAdapter c = (ContextAdapter) invocation.getArguments()[0];
                 return null;
             }
-        }).when(f).apply(any(ContextAdapter.class), anyListOf(Double.class), eq(false));
+        }).when(f).apply(any(GWTContext2DAdapter.class), anyListOf(Double.class), eq(false));
         AbstractSVGCommandParser parser = new AbstractSVGCommandParser("M", 2, true) {
             @Override
             public Delegate getDelegate() {
@@ -129,7 +131,7 @@ public class SVGCommandParserTest {
             }
         };
         Command c = parser.from("m100.1 200 300 400");
-        ContextAdapter mockAdapter = mock(ContextAdapter.class);
+        ContextAdapter mockAdapter = mock(GWTContext2DAdapter.class);
         c.execute(mockAdapter);
         ArrayList<Double> firstRun = new ArrayList<Double>(2) {{
             add(100.1d);
@@ -139,8 +141,8 @@ public class SVGCommandParserTest {
             add(300d);
             add(400d);
         }};
-        verify(f, times(1)).apply(any(ContextAdapter.class), eq(firstRun), eq(true));
-        verify(f, times(1)).apply(any(ContextAdapter.class), eq(secondRun), eq(true));
+        verify(f, times(1)).apply(any(GWTContext2DAdapter.class), eq(firstRun), eq(true));
+        verify(f, times(1)).apply(any(GWTContext2DAdapter.class), eq(secondRun), eq(true));
     }
 
     @Test

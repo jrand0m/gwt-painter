@@ -1,6 +1,8 @@
 package info.jrand0m.code.client.parser;
 
 
+import info.jrand0m.code.shared.Command;
+
 public interface CommandParser {
     /**
      * Create command object from SVG command string

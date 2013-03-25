@@ -2,10 +2,11 @@ package info.jrand0m.code.client.parser;
 
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
+import info.jrand0m.code.shared.Command;
+import info.jrand0m.code.shared.ContextAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public abstract class AbstractSVGCommandParser implements CommandParser {
 
@@ -39,10 +40,10 @@ public abstract class AbstractSVGCommandParser implements CommandParser {
             return null;
         }
         final boolean isRelative = string.contains(getsVGCommandDelimiter().toLowerCase());
-        if(getNumberOfParameters() == 0){
+        if (getNumberOfParameters() == 0) {
             return new Command() {
                 public void execute(ContextAdapter context) {
-                    getDelegate().apply(context, new ArrayList<Double>(0),isRelative);
+                    getDelegate().apply(context, new ArrayList<Double>(0), isRelative);
                 }
             };
         }
@@ -59,10 +60,10 @@ public abstract class AbstractSVGCommandParser implements CommandParser {
             }
             commandList.add(
                     new Command() {
-                public void execute(ContextAdapter context) {
-                    getDelegate().apply(context, functionArgs, isRelative);
-                }
-            });
+                        public void execute(ContextAdapter context) {
+                            getDelegate().apply(context, functionArgs, isRelative);
+                        }
+                    });
         }
 
         return new Command() {
@@ -75,7 +76,7 @@ public abstract class AbstractSVGCommandParser implements CommandParser {
     }
 
     public ArrayList<Double> getArguments(String string) {
-        string= string.replace(',',' ');
+        string = string.replace(',', ' ');
         RegExp argsRegexp = RegExp.compile("(" + VALID_SVG_ARG + ")", "g");
         ArrayList<Double> argList = new ArrayList<Double>();
         MatchResult results;

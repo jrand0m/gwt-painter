@@ -5,7 +5,6 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import info.jrand0m.code.client.events.MalformedSVGCommandEvent;
 import info.jrand0m.code.client.events.ParseSVGPathEvent;
 import info.jrand0m.code.client.events.RenderResultEvent;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.internal.matchers.Contains;
 import org.mockito.internal.matchers.Find;
@@ -13,22 +12,24 @@ import org.mockito.internal.matchers.Find;
 import java.util.HashSet;
 
 import static org.hamcrest.CoreMatchers.allOf;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
+
 public class SVGParserTest {
 
     @Test
+    @SuppressWarnings("unchecked")
     public void checkIfInterpretFiresEventOnSuccess() {
         EventBus bus = spy(new SimpleEventBus());
-        SVGPathParser parser = spy(new SVGPathParser(bus));
+        new SVGPathParser(bus);
         bus.fireEvent(new ParseSVGPathEvent("M0,0 L1,1, Z"));
         verify(bus, atLeastOnce()).fireEvent(new RenderResultEvent(anyList()));
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void checkIfInterpretFiresEventOnFailure() {
         EventBus bus = mock(EventBus.class);
         SVGPathParser parser = spy(new SVGPathParser(bus));

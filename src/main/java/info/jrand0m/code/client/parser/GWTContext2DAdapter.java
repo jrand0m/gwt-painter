@@ -1,14 +1,15 @@
 package info.jrand0m.code.client.parser;
 
 import com.google.gwt.canvas.dom.client.Context2d;
+import info.jrand0m.code.shared.ContextAdapter;
 
 
-public class ContextAdapter {
+public class GWTContext2DAdapter implements ContextAdapter {
     private Context2d context;
     private double lastX = 0;
     private double lastY = 0;
 
-    public ContextAdapter(Context2d context) {
+    public GWTContext2DAdapter(Context2d context) {
         this.context = context;
     }
 

@@ -3,16 +3,17 @@ package info.jrand0m.code.client.parser;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
-import info.jrand0m.code.client.events.ParseSVGPathEvent;
 import info.jrand0m.code.client.events.MalformedSVGCommandEvent;
+import info.jrand0m.code.client.events.ParseSVGPathEvent;
 import info.jrand0m.code.client.events.ParseSVGPathEventHandler;
 import info.jrand0m.code.client.events.RenderResultEvent;
+import info.jrand0m.code.shared.Command;
 
 import java.util.*;
 
 public class SVGPathParser {
 
-    private static final Set<CommandParser> defaultCommandParsers = new HashSet<CommandParser>(){{
+    private static final Set<CommandParser> defaultCommandParsers = new HashSet<CommandParser>() {{
         add(new MoveToParser());
         add(new LineToParser());
         add(new ClosePathParser());
@@ -29,9 +30,9 @@ public class SVGPathParser {
 
     }
 
-    public SVGPathParser(EventBus eventBus, Collection<CommandParser> collection){
+    public SVGPathParser(EventBus eventBus, Collection<CommandParser> collection) {
         this.eventBus = eventBus;
-        for(CommandParser parser:collection){
+        for (CommandParser parser : collection) {
             addCommandParser(parser);
         }
         signUpForEvents();
