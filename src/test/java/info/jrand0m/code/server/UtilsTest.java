@@ -65,16 +65,8 @@ public class UtilsTest {
 
         result = Utils.commandStringFromArea(a);
         assertThat(result.length(), not(equalTo(0)));
-
-
-//        // java.awt.geom.Area does some optimizations...
-//        verify(ctx, times(1)).moveTo(78.75, 63.75);
-//        verify(ctx, times(1)).bezierCurveTo(60, 63.75, 30, 77.5, 10, 105);
-//        verify(ctx, times(1)).lineTo(80, 105);
-//        verify(ctx, times(1)).bezierCurveTo(105, 77.5, 97.5, 63.75, 78.75, 63.75);
-//        verify(ctx, times(1)).closePath();
-//        verifyNoMoreInteractions(ctx);
-
+        // java.awt.geom.Area does some optimizations...
+        assertThat(result, equalTo("M78.75,63.75 C60.0,63.75 30.0,77.5 10.0,105.0 L80,105 C105,77.5 97.5,63.75 78.75,63.75 Z"));
 
     }
 }
