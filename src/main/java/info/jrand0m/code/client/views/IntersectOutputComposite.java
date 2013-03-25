@@ -17,6 +17,7 @@ import info.jrand0m.code.client.services.IntersectService;
 import info.jrand0m.code.client.services.IntersectServiceAsync;
 import info.jrand0m.code.shared.parser.SVGPathParser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class IntersectOutputComposite extends Composite {
@@ -24,7 +25,7 @@ public class IntersectOutputComposite extends Composite {
     private final SimpleEventBus internalEventBus;
     private final SVGPathParser parser;
     private final HashMap<String, String> results = new HashMap<String, String>();
-    private final IntersectServiceAsync service = (IntersectServiceAsync) GWT.create(IntersectService.class);
+    private final IntersectServiceAsync service = IntersectServiceAsync.Util.getInstance();
 
 
     public IntersectOutputComposite(EventBus bus) {
@@ -65,10 +66,13 @@ public class IntersectOutputComposite extends Composite {
 
                 public void onClick(ClickEvent event) {
 
-                    if (results.size() == 2) {
-                        Object[] keys = results.keySet().toArray();
-                        assert keys.length == 2;
-                        service.getIntersection(results.get(keys[0]), results.get(keys[1]),
+                    int size = results.size();
+                    if (size > 1) {
+                        ArrayList<String> list =new ArrayList<String>(size);
+                        for(String key: results.keySet()){
+                             list.add(results.get(key));
+                        }
+                        service.getIntersection(list,
                                 new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
                                         caught.printStackTrace();

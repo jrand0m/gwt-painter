@@ -62,7 +62,7 @@ public class CanvasView implements IsWidget {
 
     class RenderResultHandler implements RenderResultEventHandler {
         public void onRenderResult(RenderResultEvent event) {
-
+            clearCanvas();
             Context2d context2d = canvas.getContext2d();
             ContextAdapter adapter = new GWTContext2DAdapter(context2d);
             context2d.setStrokeStyle("#FA0000");

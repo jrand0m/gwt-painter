@@ -5,17 +5,19 @@ import info.jrand0m.code.client.services.IntersectService;
 import info.jrand0m.code.server.Utils;
 
 import java.awt.geom.Area;
+import java.util.List;
 
 public class IntersectServiceImpl extends RemoteServiceServlet implements IntersectService {
-    public String getIntersection(String figure1, String figure2) {
-
-        Area area1 = Utils.areaFromCommandString(figure1);
-        Area area2 = Utils.areaFromCommandString(figure2);
-
-        area1.intersect(area2);
-
-        String result = Utils.commandStringFromArea(area1);
-        return result;
+    public String getIntersection(List<String> figures) {
+        if (figures.size()>0){
+            Area base = Utils.areaFromCommandString(figures.get(0));
+            for (int i=1;i<figures.size();i++){
+                Area nextArea = Utils.areaFromCommandString(figures.get(i));
+                base.intersect(nextArea);
+            }
+            return Utils.commandStringFromArea(base);
+        }
+        return "";
     }
 
 
